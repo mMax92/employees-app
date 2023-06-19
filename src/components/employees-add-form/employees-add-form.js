@@ -8,7 +8,6 @@ class EmployeesAddForm extends Component {
             name: '',
             salary: ''
         }
-       this.maxId = 4;
     }
 
     onValueChange = (e) => {
