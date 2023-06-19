@@ -6,7 +6,8 @@ class EmployeesAddForm extends Component {
         super(props);
         this.state = {
             name: '',
-            salary: ''
+            salary: '',
+            wrong: false
         }
     }
 
@@ -18,16 +19,22 @@ class EmployeesAddForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
+        if (this.state.name.length < 3 || !this.state.salary) 
+        return this.setState({
+                    wrong: true
+                });
+
         this.props.onAdd(this.state.name, this.state.salary);
         this.setState({
             name: '',
-            salary: ''
+            salary: '',
+            wrong: false
 
         })
     }
 
     render() {
-        const {name, salary} = this.state;
+        const {name, salary, wrong} = this.state;
 
         return (
             <div className="app-add-form">
@@ -41,15 +48,16 @@ class EmployeesAddForm extends Component {
                         placeholder="First name?"
                         name="name" 
                         value={name}
-                        onChange={this.onValueChange}/>
+                        onChange={this.onValueChange}
+                        style={wrong ? {border: '2px solid red'} : null}/>
                     <input 
                         type="number"
                         className="form-control new-post-label"
                         placeholder="Salary?"
                         name="salary" 
                         value={salary}
-                        onChange={this.onValueChange}/>
-    
+                        onChange={this.onValueChange}
+                        style={wrong ? {border: '2px solid red'} : null}/>
                     <button 
                         type="submit"
                         className="btn btn-outline-light">Add</button>
