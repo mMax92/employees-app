@@ -35,6 +35,7 @@ class EmployeesAddForm extends Component {
 
     render() {
         const {name, salary, wrong} = this.state;
+        const wrongInput = wrong ? {border: '2px solid red'} : null;
 
         return (
             <div className="app-add-form">
@@ -49,7 +50,7 @@ class EmployeesAddForm extends Component {
                         name="name" 
                         value={name}
                         onChange={this.onValueChange}
-                        style={wrong ? {border: '2px solid red'} : null}/>
+                        style={wrongInput}/>
                     <input 
                         type="number"
                         className="form-control new-post-label"
@@ -57,7 +58,7 @@ class EmployeesAddForm extends Component {
                         name="salary" 
                         value={salary}
                         onChange={this.onValueChange}
-                        style={wrong ? {border: '2px solid red'} : null}/>
+                        style={wrongInput}/>
                     <button 
                         type="submit"
                         className="btn btn-outline-light">Add</button>
